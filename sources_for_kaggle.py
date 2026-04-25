@@ -558,7 +558,7 @@ def load_checkpoint(
         scheduler: Optional[torch.optim.lr_scheduler.LRScheduler],
         device: torch.device,
 ) -> Tuple[int, Dict[str, List[float]], float]:
-    ckpt = torch.load(path, map_location=device)
+    ckpt = torch.load(path, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["model_state_dict"])
     if optimizer is not None and ckpt.get("optimizer_state_dict") is not None:
         optimizer.load_state_dict(ckpt["optimizer_state_dict"])
